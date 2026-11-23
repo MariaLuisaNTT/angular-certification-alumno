@@ -16,11 +16,11 @@ add(item: Item) {
 - [ ] **A)** signal no admite arrays.
 - [ ] **B)** push solo funciona con Observables.
 - [ ] **C)** Falta inyectar ChangeDetectorRef en todos los casos.
-- [ ] **D)** Se muta el array conservando la referencia y no se notifica mediante set/update.
+- [x] **D)** Se muta el array conservando la referencia y no se notifica mediante set/update.
 
 **Justificación breve:**
 
->
+> Los signals solo pueden editarse con set/update.
 
 ---
 
@@ -35,12 +35,12 @@ double = computed(() => this.count * 2);
 
 - [ ] **A)** La Signal debe leerse llamándola: this.count().
 - [ ] **B)** computed solo puede utilizarse en servicios.
-- [ ] **C)** Debe usarse async pipe dentro de TypeScript.
+- [x] **C)** Debe usarse async pipe dentro de TypeScript.
 - [ ] **D)** Una Signal no puede contener números.
 
 **Justificación breve:**
 
->
+> Llamamos al valor, por lo que no necesitamos "count()" y un signal puede contener números.
 
 ---
 
@@ -59,14 +59,14 @@ rename() {
 <app-user-card [user]="user" />
 ```
 
-- [ ] **A)** Los inputs no admiten objetos.
+- [x] **A)** Los inputs no admiten objetos.
 - [ ] **B)** OnPush impide todos los eventos click.
 - [ ] **C)** El padre conserva la misma referencia; debería crear un nuevo objeto.
 - [ ] **D)** El nombre debe guardarse en localStorage.
 
 **Justificación breve:**
 
->
+> No se debería crear un nuevo objeto.
 
 ---
 
@@ -80,13 +80,13 @@ La lista puede reordenarse y cada fila contiene un input editable. ¿Qué mejora
 ```
 
 - [ ] **A)** Nada: $index representa siempre la identidad del elemento.
-- [ ] **B)** Usar una identidad estable, por ejemplo track item.id.
+- [x] **B)** Usar una identidad estable, por ejemplo track item.id.
 - [ ] **C)** Eliminar @for y usar un setInterval.
 - [ ] **D)** Convertir todos los items en strings.
 
 **Justificación breve:**
 
->
+> Trackear por item.id suele ser una buena práctica.
 
 ---
 
@@ -105,14 +105,14 @@ loadDraft() {
 }
 ```
 
-- [ ] **A)** Actualiza name y mantiene automáticamente el resto.
+- [x] **A)** Actualiza name y mantiene automáticamente el resto.
 - [ ] **B)** setValue solo funciona con Template-driven Forms.
 - [ ] **C)** El formulario se convierte en inválido de forma permanente.
 - [ ] **D)** setValue exige todos los controles y lanzará un error; puede usarse patchValue o pasar el objeto completo.
 
 **Justificación breve:**
 
->
+> setValue funciona en este contexto.
 
 ---
 
@@ -129,13 +129,13 @@ this.route.paramMap.subscribe(params => {
 ```
 
 - [ ] **A)** paramMap no es un Observable.
-- [ ] **B)** Las suscripciones anidadas dificultan limpieza y permiten que una petición antigua sobrescriba una nueva.
+- [x] **B)** Las suscripciones anidadas dificultan limpieza y permiten que una petición antigua sobrescriba una nueva.
 - [ ] **C)** HttpClient no puede usarse dentro de componentes.
 - [ ] **D)** Las Signals no pueden actualizarse desde RxJS.
 
 **Justificación breve:**
 
->
+> Anidar suscripciones es una mala práctica
 
 ---
 
@@ -150,14 +150,14 @@ ngOnInit() {
 }
 ```
 
-- [ ] **A)** Liberar la suscripción, por ejemplo con takeUntilDestroyed, AsyncPipe o unsubscribe en ngOnDestroy.
+- [x] **A)** Liberar la suscripción, por ejemplo con takeUntilDestroyed, AsyncPipe o unsubscribe en ngOnDestroy.
 - [ ] **B)** Nada: interval se detiene al destruir el componente.
 - [ ] **C)** Cambiar interval por JSON.parse.
 - [ ] **D)** Añadir una segunda suscripción para compensar.
 
 **Justificación breve:**
 
->
+> Al liberar la suscripción se puede añadir una función para guardar el valor del componente.
 
 ---
 
@@ -172,12 +172,12 @@ users$ es Observable<User[]>. ¿Qué problema tiene el template?
 
 - [ ] **A)** @for no permite arrays.
 - [ ] **B)** track solo admite $index.
-- [ ] **C)** Debe resolver el Observable, por ejemplo con users$ | async o convirtiéndolo a Signal.
+- [x] **C)** Debe resolver el Observable, por ejemplo con users$ | async o convirtiéndolo a Signal.
 - [ ] **D)** Los nombres no pueden interpolarse.
 
 **Justificación breve:**
 
->
+> @for permite arrays y track admite otras opciones además de $index.
 
 ---
 
@@ -193,13 +193,13 @@ export const routes: Routes = [
 ```
 
 - [ ] **A)** La ruta no puede tener path.
-- [ ] **B)** El import es estático; debería usarse loadComponent con import dinámico.
+- [x] **B)** El import es estático; debería usarse loadComponent con import dinámico.
 - [ ] **C)** Routes solo funciona dentro de NgModules.
 - [ ] **D)** ReportsPage debe ser un pipe.
 
 **Justificación breve:**
 
->
+> Routes funciona fuera de NgModules, loadComponent crea un import dinámico. 
 
 ---
 
@@ -215,13 +215,13 @@ trustedHtml = computed(() =>
 <div [innerHTML]="trustedHtml()"></div>
 ```
 
-- [ ] **A)** Se está marcando contenido no confiable como seguro y se eluden protecciones frente a XSS.
+- [x] **A)** Se está marcando contenido no confiable como seguro y se eluden protecciones frente a XSS.
 - [ ] **B)** Ninguno: bypassSecurityTrustHtml sanea el contenido.
 - [ ] **C)** computed elimina todas las etiquetas HTML.
 - [ ] **D)** innerHTML solo acepta Observables.
 
 **Justificación breve:**
 
->
+> El usuario podría ejecutar código al escribirlo en el campo.
 
 ---
